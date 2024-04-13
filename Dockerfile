@@ -1,4 +1,4 @@
-FROM docker.io/library/debian:bookworm AS build
+FROM docker.io/library/debian:bookworm@sha256:b37bc259c67238d814516548c17ad912f26c3eed48dd9bb54893eafec8739c89 AS build
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -25,9 +25,9 @@ RUN set -e \
  && cd / \
  && rm -rf /tmp/systemd
 
-FROM docker.io/otel/opentelemetry-collector-contrib:0.98.0 AS prep
+FROM docker.io/otel/opentelemetry-collector-contrib:0.98.0@sha256:5cea85bcbc734a3c0a641368e5a4ea9d31b472997e9f2feca57eeb4a147fcf1a AS prep
 
-FROM docker.io/library/debian:bookworm-slim
+FROM docker.io/library/debian:bookworm-slim@sha256:3d5df92588469a4c503adbead0e4129ef3f88e223954011c2169073897547cac
 
 COPY --from=build /bin/journalctl /bin/journalctl
 
