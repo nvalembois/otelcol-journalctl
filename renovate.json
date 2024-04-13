@@ -1,0 +1,17 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "groupName": "images",
+      "pinDigests": true
+    },
+    {
+      "matchDatasources": ["github-runners"],
+      "groupName": "githubCi"
+    }
+  ]
+}
