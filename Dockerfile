@@ -1,10 +1,8 @@
-ARG BUILD_IMG=docker.io/library/debian:bookworm
-ARG OTELC_IMG=docker.io/otel/opentelemetry-collector-contrib:0.98.0
-
-FROM ${BUILD_IMG} AS build
+FROM docker.io/library/debian:bookworm AS build
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+# renovate: datasource=github-tags depName=systemd/systemd
 ARG SYSTEMD_VERSION=v255
 
 RUN set -e \
@@ -27,9 +25,9 @@ RUN set -e \
  && cd / \
  && rm -rf /tmp/systemd
 
-FROM ${OTELC_IMG} AS prep
+FROM docker.io/otel/opentelemetry-collector-contrib:0.98.0 AS prep
 
-FROM ${BUILD_IMG}-slim
+FROM docker.io/library/debian:bookworm-slim
 
 COPY --from=build /bin/journalctl /bin/journalctl
 
