@@ -8,7 +8,7 @@ ARG SYSTEMD_VERSION=v255
 RUN set -e \
  && apt-get update \
  && apt-get install --yes --mark-auto git python3-venv \
-            gcc-12 g++-12 libc6-dev gperf pkg-config libbpf-dev libmount-dev libcap-dev \
+            gcc g++ libc6-dev gperf pkg-config libbpf-dev libmount-dev libcap-dev \
  && cd /tmp \
  && git clone --depth 1 --branch ${SYSTEMD_VERSION} https://github.com/systemd/systemd.git \
  && cd systemd \
