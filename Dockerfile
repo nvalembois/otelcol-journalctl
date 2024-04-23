@@ -8,7 +8,7 @@ ARG SYSTEMD_VERSION=v255
 RUN set -e \
  && apt-get update \
  && apt-get install --yes --mark-auto git python3-venv \
-            gcc g++ libc6-dev gperf pkg-config libbpf-dev libmount-dev libcap-dev \
+            gcc g++ libc6-dev gperf pkg-config libbpf-dev libmount-dev libcap-dev libzstd-dev \
  && cd /tmp \
  && git clone --depth 1 --branch ${SYSTEMD_VERSION} https://github.com/systemd/systemd.git \
  && cd systemd \
@@ -17,6 +17,7 @@ RUN set -e \
  && pip install -r .github/workflows/requirements.txt --require-hashes \
  && pip install jinja2 \
  && ./configure -Dmode=release -Dlink-journalctl-shared=false -Dstandalone-binaries=true \
+                -Dzstd=enabled \
                 --buildtype release --prefer-static \
  && ninja -C build journalctl \
  && mv build/journalctl /bin/journalctl \
@@ -25,7 +26,7 @@ RUN set -e \
  && cd / \
  && rm -rf /tmp/systemd
 
-FROM docker.io/otel/opentelemetry-collector-contrib:0.98.0@sha256:5cea85bcbc734a3c0a641368e5a4ea9d31b472997e9f2feca57eeb4a147fcf1a AS prep
+FROM docker.io/otel/opentelemetry-collector-contrib:0.99.0@sha256:42d938c88a19388fc6a37dca64a3643874aba92b88df8ca985eeda3421c8cc80 AS prep
 
 FROM docker.io/library/debian:bookworm-slim@sha256:3d5df92588469a4c503adbead0e4129ef3f88e223954011c2169073897547cac
 
