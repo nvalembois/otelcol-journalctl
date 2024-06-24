@@ -26,7 +26,7 @@ RUN set -e \
  && cd / \
  && rm -rf /tmp/systemd
 
-FROM docker.io/otel/opentelemetry-collector-contrib:0.103.0@sha256:0dffde3e58fc3f255cad861deb62d7c51505ce961a8a7e2107c7fc2668b774a3 AS prep
+FROM docker.io/otel/opentelemetry-collector-contrib:0.103.1@sha256:19a8facab166afc9b5b46bd27040430906cc7d1525ee1fa3f77a62bf97ae8be5 AS prep
 
 FROM docker.io/library/debian:bookworm-slim@sha256:67f3931ad8cb1967beec602d8c0506af1e37e8d73c2a0b38b181ec5d8560d395
 
