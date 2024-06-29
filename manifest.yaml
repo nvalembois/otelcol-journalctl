@@ -43,15 +43,15 @@ processors:
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatorateprocessor v##OTELCOL_VERSION##
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v##OTELCOL_VERSION##
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor v##OTELCOL_VERSION##
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbytraceprocessor v##OTELCOL_VERSION##
+  # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbytraceprocessor v##OTELCOL_VERSION##
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v##OTELCOL_VERSION##
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/metricstransformprocessor v##OTELCOL_VERSION##
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/probabilisticsamplerprocessor v##OTELCOL_VERSION##
+  # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/probabilisticsamplerprocessor v##OTELCOL_VERSION##
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/redactionprocessor v##OTELCOL_VERSION##
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/remotetapprocessor v##OTELCOL_VERSION##
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v##OTELCOL_VERSION##
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v##OTELCOL_VERSION##
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/tailsamplingprocessor v##OTELCOL_VERSION##
+  # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/tailsamplingprocessor v##OTELCOL_VERSION##
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v##OTELCOL_VERSION##
   ### Contrib inclusions
 
