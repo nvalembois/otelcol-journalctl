@@ -1,0 +1,84 @@
+dist:
+  module: github.com/nvalembois/otelcol-journalctl
+  name: otelcol-k8s-custom
+  description: OpenTelemetry Collector for Kubernetes
+  version: ##TARGET_VERSION##
+  output_path: ./_build
+  otelcol_version: ##OTELCOL_VERSION##
+
+extensions:
+  ### K8S inclusions
+  # - gomod: go.opentelemetry.io/collector/extension/zpagesextension v##OTELCOL_VERSION##
+  # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension v##OTELCOL_VERSION##
+  # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/headerssetterextension v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v##OTELCOL_VERSION##
+  # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/oauth2clientauthextension v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer/hostobserver v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/observer/k8sobserver v##OTELCOL_VERSION##
+  # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/oidcauthextension v##OTELCOL_VERSION##
+  # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/pprofextension v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/storage/filestorage v##OTELCOL_VERSION##
+  ### Contrib inclusions
+
+exporters:
+  ### K8S inclusions
+  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v##OTELCOL_VERSION##
+  # - gomod: go.opentelemetry.io/collector/exporter/nopexporter v##OTELCOL_VERSION##
+  # - gomod: go.opentelemetry.io/collector/exporter/otlpexporter v##OTELCOL_VERSION##
+  # - gomod: go.opentelemetry.io/collector/exporter/otlphttpexporter v##OTELCOL_VERSION##
+  # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/fileexporter v##OTELCOL_VERSION##
+  # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/loadbalancingexporter v##OTELCOL_VERSION##
+  ### Contrib inclusions
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/lokiexporter v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusexporter v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusremotewriteexporter v##OTELCOL_VERSION##
+
+processors:
+  ### K8S inclusions
+  - gomod: go.opentelemetry.io/collector/processor/batchprocessor v##OTELCOL_VERSION##
+  - gomod: go.opentelemetry.io/collector/processor/memorylimiterprocessor v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/attributesprocessor v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/cumulativetodeltaprocessor v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatorateprocessor v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor v##OTELCOL_VERSION##
+  # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbytraceprocessor v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/metricstransformprocessor v##OTELCOL_VERSION##
+  # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/probabilisticsamplerprocessor v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/redactionprocessor v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/remotetapprocessor v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v##OTELCOL_VERSION##
+  # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/tailsamplingprocessor v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v##OTELCOL_VERSION##
+  ### Contrib inclusions
+
+receivers:
+  ### K8S inclusions
+  # - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/filelogreceiver v##OTELCOL_VERSION##
+  # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/fluentforwardreceiver v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver v##OTELCOL_VERSION##
+  # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/httpcheckreceiver v##OTELCOL_VERSION##
+  # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/jaegerreceiver v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/journaldreceiver v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sclusterreceiver v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8seventsreceiver v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/k8sobjectsreceiver v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/kubeletstatsreceiver v##OTELCOL_VERSION##
+  # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/opencensusreceiver v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/receivercreator v##OTELCOL_VERSION##
+  # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver v##OTELCOL_VERSION##
+  ### Contrib inclusions
+
+connectors:
+  ### K8S inclusions
+  - gomod: go.opentelemetry.io/collector/connector/forwardconnector v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/connector/countconnector v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/connector/routingconnector v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/connector/servicegraphconnector v##OTELCOL_VERSION##
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/connector/spanmetricsconnector v##OTELCOL_VERSION##
+  ### Contrib inclusions

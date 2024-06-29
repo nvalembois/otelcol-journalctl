@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - Dockerfile
+      - versions.awk
+      - manifest.yaml
 
 env:
   REGISTRY: ghcr.io
@@ -58,7 +60,7 @@ jobs:
           context: .
           platforms: linux/amd64
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.versions.outputs.OTEL_VERSION }}
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.versions.outputs.OTEL_VERSION }}-${{ steps.versions.outputs.SYSTEMD_VERSION }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.versions.outputs.TARGET_VERSION }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.versions.outputs.TARGET_VERSION }}-${{ steps.versions.outputs.SYSTEMD_VERSION }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
