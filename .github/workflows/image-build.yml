@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - Dockerfile
+      - versions.awk
+      - manifest.yaml
 
 env:
   REGISTRY: ghcr.io
