@@ -57,5 +57,5 @@ USER ${USER_UID}
 
 COPY --from=build-otelcol /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=build-otelcol /tmp/_build/otelcol-k8s-custom  /
-EXPOSE 4317 55678 55679
+
 ENTRYPOINT ["/otelcol-k8s-custom"]
