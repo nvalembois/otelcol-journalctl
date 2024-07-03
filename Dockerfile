@@ -27,7 +27,7 @@ RUN set -e \
  && rm -rf /tmp/systemd
 
 # FROM docker.io/otel/opentelemetry-collector-contrib:0.103.1@sha256:19a8facab166afc9b5b46bd27040430906cc7d1525ee1fa3f77a62bf97ae8be5 AS prep
-FROM docker.io/library/golang:1.22.5@sha256:45c516d2adb456d6a0ca3cc5172013abbf65d5152dbd5f9edffaa63fbf96a96d AS build-otelcol
+FROM docker.io/library/golang:1.22.5@sha256:1a9b9cc9929106f9a24359581bcf35c7a6a3be442c1c53dc12c41a106c1daca8 AS build-otelcol
 
 ENV DEBIAN_FRONTEND=noninteractive
 
