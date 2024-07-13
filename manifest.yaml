@@ -25,8 +25,8 @@ exporters:
   ### K8S inclusions
   - gomod: go.opentelemetry.io/collector/exporter/debugexporter v##OTELCOL_VERSION##
   # - gomod: go.opentelemetry.io/collector/exporter/nopexporter v##OTELCOL_VERSION##
-  # - gomod: go.opentelemetry.io/collector/exporter/otlpexporter v##OTELCOL_VERSION##
-  # - gomod: go.opentelemetry.io/collector/exporter/otlphttpexporter v##OTELCOL_VERSION##
+  - gomod: go.opentelemetry.io/collector/exporter/otlpexporter v##OTELCOL_VERSION##
+  - gomod: go.opentelemetry.io/collector/exporter/otlphttpexporter v##OTELCOL_VERSION##
   # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/fileexporter v##OTELCOL_VERSION##
   # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/loadbalancingexporter v##OTELCOL_VERSION##
   ### Contrib inclusions
