@@ -30,7 +30,7 @@ exporters:
   # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/fileexporter v##OTELCOL_VERSION##
   # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/loadbalancingexporter v##OTELCOL_VERSION##
   ### Contrib inclusions
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/lokiexporter v##OTELCOL_VERSION##
+  # - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/lokiexporter v##OTELCOL_VERSION##
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusexporter v##OTELCOL_VERSION##
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusremotewriteexporter v##OTELCOL_VERSION##
 
