@@ -1,4 +1,4 @@
-FROM docker.io/library/debian:bookworm@sha256:45f2e735295654f13e3be10da2a6892c708f71a71be845818f6058982761a6d3 AS build-journalctl
+FROM docker.io/library/debian:bookworm@sha256:aadf411dc9ed5199bc7dab48b3e6ce18f8bbee4f170127f5ff1b75cd8035eb36 AS build-journalctl
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -48,7 +48,7 @@ RUN set -e \
  && ./ocb --config manifest.yaml \
  && rm -r otelcol-distribution* 
 
-FROM docker.io/library/debian:bookworm-slim@sha256:5f7d5664eae4a192c2d2d6cb67fc3f3c7891a8722cd2903cc35aa649a12b0c8d
+FROM docker.io/library/debian:bookworm-slim@sha256:2ccc7e39b0a6f504d252f807da1fc4b5bcd838e83e4dec3e2f57b2a4a64e7214
 
 COPY --from=build-journalctl /bin/journalctl /bin/journalctl
 
