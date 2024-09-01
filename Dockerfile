@@ -38,14 +38,12 @@ ADD manifest.yaml /tmp
 
 RUN set -e \
  && cd /tmp \
- && curl --proto '=https' --tlsv1.2 --silent -fL -o ocb \
-    https://github.com/open-telemetry/opentelemetry-collector/releases/download/cmd%2Fbuilder%2Fv${TARGET_VERSION}/ocb_${TARGET_VERSION}_linux_amd64 \
- && chmod +x ocb \
  && curl --proto '=https' --tlsv1.2 --silent -fL -o manifest-k8s.yaml \
     https://github.com/open-telemetry/opentelemetry-collector-releases/raw/v${TARGET_VERSION}/distributions/otelcol-k8s/manifest.yaml \
  && OTELCOL_VERSION="$(awk '$1 == "otelcol_version:" { print $2 }' manifest-k8s.yaml )" \
  && sed -i -e "s/##TARGET_VERSION##/${TARGET_VERSION}/;s/##OTELCOL_VERSION##/${OTELCOL_VERSION}/;" manifest.yaml \
- && ./ocb --config manifest.yaml \
+ && go install go.opentelemetry.io/collector/cmd/builder@v${OTELCOL_VERSION} \
+ && vuilder --config manifest.yaml \
  && rm -r otelcol-distribution* 
 
 FROM docker.io/library/debian:bookworm-slim@sha256:2ccc7e39b0a6f504d252f807da1fc4b5bcd838e83e4dec3e2f57b2a4a64e7214
