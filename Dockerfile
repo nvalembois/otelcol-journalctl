@@ -43,7 +43,7 @@ RUN set -e \
  && OTELCOL_VERSION="$(awk '$1 == "otelcol_version:" { print $2 }' manifest-k8s.yaml )" \
  && sed -i -e "s/##TARGET_VERSION##/${TARGET_VERSION}/;s/##OTELCOL_VERSION##/${OTELCOL_VERSION}/;" manifest.yaml \
  && go install go.opentelemetry.io/collector/cmd/builder@v${OTELCOL_VERSION} \
- && vuilder --config manifest.yaml \
+ && builder --config manifest.yaml \
  && rm -r otelcol-distribution* 
 
 FROM docker.io/library/debian:bookworm-slim@sha256:2ccc7e39b0a6f504d252f807da1fc4b5bcd838e83e4dec3e2f57b2a4a64e7214
