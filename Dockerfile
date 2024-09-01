@@ -2,7 +2,7 @@ FROM docker.io/library/debian:bookworm@sha256:aadf411dc9ed5199bc7dab48b3e6ce18f8
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# renovate: datasource=github-tags depName=systemd/systemd
+#renovate: datasource=github-tags depName=systemd/systemd
 ARG SYSTEMD_VERSION=v255
 
 RUN set -e \
@@ -31,7 +31,7 @@ FROM docker.io/library/golang:1.23.0@sha256:613a108a4a4b1dfb6923305db791a19d088f
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# renovate: datasource=github-tags depName=open-telemetry/opentelemetry-collector-releases
+#renovate: datasource=github-tags depName=open-telemetry/opentelemetry-collector-releases
 ARG TARGET_VERSION=0.103.1
 
 ADD manifest.yaml /tmp
