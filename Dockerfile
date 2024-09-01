@@ -32,7 +32,7 @@ FROM docker.io/library/golang:1.23.0@sha256:613a108a4a4b1dfb6923305db791a19d088f
 ENV DEBIAN_FRONTEND=noninteractive
 
 # renovate: datasource=github-tags depName=open-telemetry/opentelemetry-collector-releases
-ARG TARGET_VERSION=0.103.1
+ARG TARGET_VERSION=0.108.0
 
 ADD manifest.yaml /tmp
 
