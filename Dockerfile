@@ -1,7 +1,7 @@
 ### Build Journalctl
 FROM docker.io/library/debian:bookworm@sha256:aadf411dc9ed5199bc7dab48b3e6ce18f8bbee4f170127f5ff1b75cd8035eb36 AS build-journalctl
 # renovate: datasource=github-tags depName=systemd/systemd
-ARG SYSTEMD_VERSION=v255
+ARG SYSTEMD_VERSION=v256.5
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN set -e \
@@ -15,9 +15,9 @@ RUN set -e \
  && python3 -m venv venv && . ./venv/bin/activate \
  && pip install -r .github/workflows/requirements.txt --require-hashes \
  && pip install jinja2 \
- && ./configure -Dmode=release -Dlink-journalctl-shared=false -Dstandalone-binaries=true \
+ && meson setup -Dmode=release -Dlink-journalctl-shared=false -Dstandalone-binaries=true \
                 -Dzstd=enabled \
-                --buildtype release --prefer-static \
+                --buildtype release --prefer-static build \
  && ninja -C build journalctl \
  && mv build/journalctl /bin/journalctl \
  && apt-get autopurge --yes \
@@ -26,7 +26,7 @@ RUN set -e \
  && rm -rf /tmp/systemd
 
 ### Build custom-manifest.yaml
-FROM docker.io/library/python:3.12.5-alpine3.20 AS build-manifest
+FROM docker.io/library/python:3.12.5-alpine3.20@sha256:c2f41e6a5a67bc39b95be3988dd19fbd05d1b82375c46d9826c592cca014d4de AS build-manifest
 # renovate: datasource=github-tags depName=open-telemetry/opentelemetry-collector-releases
 ARG TARGET_VERSION=0.108.0
 
