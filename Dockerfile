@@ -40,7 +40,7 @@ RUN set -e && \
   python merge.py > custom-manifest.yaml
 
 ### Build otelcol-k8s-custom
-FROM docker.io/library/golang:1.23.1@sha256:4a3c2bcd243d3dbb7b15237eecb0792db3614900037998c2cd6a579c46888c1e AS build-otelcol
+FROM docker.io/library/golang:1.23.1@sha256:2fe82a3f3e006b4f2a316c6a21f62b66e1330ae211d039bb8d1128e12ed57bf1 AS build-otelcol
 # renovate: datasource=github-tags depName=open-telemetry/opentelemetry-collector-releases
 ARG TARGET_VERSION=0.108.0
 
