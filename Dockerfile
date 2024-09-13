@@ -26,7 +26,7 @@ RUN set -e \
  && rm -rf /tmp/systemd
 
 ### Build custom-manifest.yaml
-FROM docker.io/library/python:3.12.6-alpine3.20@sha256:e0e4d3db19333a970e7acfdcb8863efe065be6c3038ef5018694f98162bffec0 AS build-manifest
+FROM docker.io/library/python:3.12.6-alpine3.20@sha256:7130f75b1bb16c7c5d802782131b4024fe3d7a87ce7d936e8948c2d2e0180bc4 AS build-manifest
 # renovate: datasource=github-tags depName=open-telemetry/opentelemetry-collector-releases
 ARG TARGET_VERSION=0.108.0
 
