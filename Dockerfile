@@ -28,7 +28,7 @@ RUN set -e \
 ### Build custom-manifest.yaml
 FROM docker.io/library/python:3.12.6-alpine3.20@sha256:7130f75b1bb16c7c5d802782131b4024fe3d7a87ce7d936e8948c2d2e0180bc4 AS build-manifest
 # renovate: datasource=github-tags depName=open-telemetry/opentelemetry-collector-releases
-ARG TARGET_VERSION=0.108.0
+ARG TARGET_VERSION=0.109.0
 
 ADD manifest.yaml merge.py /
 ADD https://raw.githubusercontent.com/open-telemetry/opentelemetry-collector-releases/v${TARGET_VERSION}/distributions/otelcol-k8s/manifest.yaml /otelcol-k8s-manifest.yaml
@@ -42,7 +42,7 @@ RUN set -e && \
 ### Build otelcol-k8s-custom
 FROM docker.io/library/golang:1.23.1@sha256:2fe82a3f3e006b4f2a316c6a21f62b66e1330ae211d039bb8d1128e12ed57bf1 AS build-otelcol
 # renovate: datasource=github-tags depName=open-telemetry/opentelemetry-collector-releases
-ARG TARGET_VERSION=0.108.0
+ARG TARGET_VERSION=0.109.0
 
 ENV DEBIAN_FRONTEND=noninteractive
 
