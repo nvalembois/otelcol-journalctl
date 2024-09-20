@@ -43,7 +43,7 @@ jobs:
         name: Generate manifest
         run: |
           set -e
-          python merge.py --version 0.109.0 >manifest-${OTELCOL_VERSION}.yaml
+          python merge.py --version 0.109.0 >manifest-${{ steps.versions.outputs.OTELCOL_VERSION }}.yaml
       - 
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3  # https://github.com/docker/setup-qemu-action
@@ -76,7 +76,7 @@ jobs:
           context: .
           platforms: linux/amd64
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.versions.outputs.TARGET_VERSION }}
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.versions.outputs.TARGET_VERSION }}-${{ steps.versions.outputs.SYSTEMD_VERSION }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.versions.outputs.OTELCOL_VERSION }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.versions.outputs.OTELCOL_VERSION }}-${{ steps.versions.outputs.SYSTEMD_VERSION }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
