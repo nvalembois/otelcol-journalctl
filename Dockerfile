@@ -46,9 +46,9 @@ ARG USER_UID=10001
 
 COPY --from=build-journalctl /bin/journalctl /bin/journalctl
 
-USER ${USER_UID}
-
 COPY --from=build-otelcol /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=build-otelcol /tmp/_build/otelcol-k8s-custom  /
+
+USER ${USER_UID}
 
 ENTRYPOINT ["/otelcol-k8s-custom"]
