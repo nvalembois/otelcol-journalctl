@@ -1,4 +1,37 @@
 import yaml
+import requests
+
+# Remplacez par votre token GitHub personnel
+REPO_OWNER = "open-telemetry"
+REPO_NAME = "opentelemetry-collector-releases"
+ARTIFACT_ID = "id_de_l_artefact"
+
+# URL pour récupérer les artefacts
+artifacts_base_url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents"
+
+headers = {
+    "Accept": "application/vnd.github.v3+json"
+}
+
+# Récupérer la liste des artefacts
+response = requests.get(artifacts_url, headers=headers)
+artifacts = response.json()
+
+# Filtrer par ID de l'artefact (ou par nom si besoin)
+for artifact in artifacts["artifacts"]:
+    if artifact["id"] == int(ARTIFACT_ID):
+        download_url = artifact["archive_download_url"]
+        break
+
+# Télécharger l'artefact
+artifact_response = requests.get(download_url, headers=headers)
+artifact_name = f"{artifact['name']}.zip"
+
+# Sauvegarder l'artefact en tant que fichier zip
+with open(artifact_name, "wb") as f:
+    f.write(artifact_response.content)
+
+print(f"Artefact {artifact_name} téléchargé avec succès !")
 
 # Ouvrir et lire le fichier YAML
 with open('manifest.yaml', 'r') as file:
