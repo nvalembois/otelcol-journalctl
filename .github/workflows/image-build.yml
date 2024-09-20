@@ -1,6 +1,7 @@
 name: Image build
 
 on:
+  workflow_dispatch: # Permet le déclenchement manuel du workflow
   push:
     paths:
       - Dockerfile
