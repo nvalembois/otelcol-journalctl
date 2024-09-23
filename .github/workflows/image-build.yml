@@ -25,6 +25,11 @@ jobs:
         name: Checkout
         uses: actions/checkout@v4
       - 
+        name: Read versions
+        id: versions
+        run: |
+          awk -f versions.awk Dockerfile >> $GITHUB_OUTPUT
+      - 
         name: Push Tag with new version
         if: github.ref_name == 'main' && github.ref_type != 'tag'
         id: tag_version
@@ -32,6 +37,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           release_branches: master,main,latest
+          custom_tag: ${{ steps.versions.outputs.OTELCOL_VERSION }}
       - 
         name: Create a GitHub release
         if: github.ref_name == 'main'
@@ -40,11 +46,6 @@ jobs:
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ github.repository }} ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
-      - 
-        name: Read versions
-        id: versions
-        run: |
-          awk -f versions.awk Dockerfile >> $GITHUB_OUTPUT
       - 
         name: Set up Python
         uses: actions/setup-python@v4
