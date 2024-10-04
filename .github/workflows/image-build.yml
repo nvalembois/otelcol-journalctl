@@ -61,7 +61,7 @@ jobs:
         name: Generate manifest
         run: |
           set -e
-          python merge.py --version 0.109.0 >manifest-${{ steps.versions.outputs.OTELCOL_VERSION }}.yaml
+          python merge.py --version ${{ steps.versions.outputs.OTELCOL_VERSION }} >manifest-${{ steps.versions.outputs.OTELCOL_VERSION }}.yaml
           echo '## Resulting manifest'
           cat manifest-${{ steps.versions.outputs.OTELCOL_VERSION }}.yaml
       - 
