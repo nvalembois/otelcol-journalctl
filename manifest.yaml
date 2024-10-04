@@ -6,7 +6,6 @@ dist:
   output_path: ./_build
   otelcol_version: 0.109.0
 extensions:
-- gomod: go.opentelemetry.io/collector/extension/auth v0.109.0
 - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/headerssetterextension
     v0.109.0
 - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension
