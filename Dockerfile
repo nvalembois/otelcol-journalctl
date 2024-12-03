@@ -1,5 +1,5 @@
 ### Build Journalctl
-FROM docker.io/library/debian:bookworm@sha256:10901ccd8d249047f9761845b4594f121edef079cfd8224edebd9ea726f0a7f6 AS build-journalctl
+FROM docker.io/library/debian:bookworm@sha256:17122fe3d66916e55c0cbd5bbf54bb3f87b3582f4d86a755a0fd3498d360f91b AS build-journalctl
 # renovate: datasource=github-tags depName=systemd/systemd
 ARG SYSTEMD_VERSION=v256.9
 
@@ -41,7 +41,7 @@ RUN set -e \
  && rm -r otelcol-distribution* 
 
  ### Build image
-FROM docker.io/library/debian:bookworm-slim@sha256:ca3372ce30b03a591ec573ea975ad8b0ecaf0eb17a354416741f8001bbcae33d
+FROM docker.io/library/debian:bookworm-slim@sha256:1537a6a1cbc4b4fd401da800ee9480207e7dc1f23560c21259f681db56768f63
 ARG USER_UID=10001
 
 COPY --from=build-journalctl /bin/journalctl /bin/journalctl
