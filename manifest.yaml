@@ -4,7 +4,6 @@ dist:
   description: OpenTelemetry Collector for Kubernetes
   version: 0.109.0
   output_path: ./_build
-  otelcol_version: 0.109.0
 extensions:
 - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/headerssetterextension
     v0.109.0
@@ -22,10 +21,6 @@ exporters:
 - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.109.0
 - gomod: go.opentelemetry.io/collector/exporter/otlpexporter v0.109.0
 - gomod: go.opentelemetry.io/collector/exporter/otlphttpexporter v0.109.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusexporter
-    v0.109.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusremotewriteexporter
-    v0.109.0
 - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/elasticsearchexporter
     v0.109.0
 processors:

@@ -50,7 +50,8 @@ if __name__ == "__main__":
     for flavor in ['otelcol-contrib', 'otelcol-k8s']:
         k8s = download_and_parse_yaml(args.version, flavor)
         manifest['dist']['version'] = k8s['dist']['version']
-        manifest['dist']['otelcol_version'] = k8s['dist']['otelcol_version']
+        if 'otelcol_version' in k8s['dist']:
+            manifest['dist']['otelcol_version'] = k8s['dist']['otelcol_version']
         for group in ['extensions', 'exporters', 'processors', 'receivers', 'connectors', 'providers']:
             for ext in k8s[group]:
                 mod = (ext['gomod']).split()
