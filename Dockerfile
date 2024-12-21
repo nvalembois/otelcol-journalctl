@@ -36,7 +36,7 @@ COPY manifest-${OTELCOL_VERSION}.yaml /tmp/manifest.yaml
 
 WORKDIR /tmp
 RUN set -e \
- && go install go.opentelemetry.io/collector/cmd/builder@v${OTELCOL_VERSION} \
+ && go install go.opentelemetry.io/collector/cmd/builder@v${OTELCOL_VERSION%.*} \
  && builder --config manifest.yaml \
  && rm -r otelcol-distribution* 
 
