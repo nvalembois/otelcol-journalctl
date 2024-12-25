@@ -1,5 +1,5 @@
 ### Build Journalctl
-FROM docker.io/library/debian:bookworm@sha256:17122fe3d66916e55c0cbd5bbf54bb3f87b3582f4d86a755a0fd3498d360f91b AS build-journalctl
+FROM docker.io/library/debian:bookworm@sha256:b877a1a3fdf02469440f1768cf69c9771338a875b7add5e80c45b756c92ac20a AS build-journalctl
 # renovate: datasource=github-tags depName=systemd/systemd
 ARG SYSTEMD_VERSION=v257.1
 
@@ -26,7 +26,7 @@ RUN set -e \
  && rm -rf /tmp/systemd
 
 ### Build otelcol-k8s-custom
-FROM docker.io/library/golang:1.23.4@sha256:70031844b8c225351d0bb63e2c383f80db85d92ba894e3da7e13bcf80efa9a37 AS build-otelcol
+FROM docker.io/library/golang:1.23.4@sha256:f06d2bb355a67ccc6c23f3699766323a09ed0a4b724a6b25a300d4b30e01f02c AS build-otelcol
 # renovate: datasource=github-tags depName=open-telemetry/opentelemetry-collector-releases
 ARG OTELCOL_VERSION=0.116.1
 
@@ -41,7 +41,7 @@ RUN set -e \
  && rm -r otelcol-distribution* 
 
  ### Build image
-FROM docker.io/library/debian:bookworm-slim@sha256:1537a6a1cbc4b4fd401da800ee9480207e7dc1f23560c21259f681db56768f63
+FROM docker.io/library/debian:bookworm-slim@sha256:d365f4920711a9074c4bcd178e8f457ee59250426441ab2a5f8106ed8fe948eb
 ARG USER_UID=10001
 
 COPY --from=build-journalctl /bin/journalctl /bin/journalctl
