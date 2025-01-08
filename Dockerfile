@@ -1,7 +1,7 @@
 ### Build Journalctl
 FROM docker.io/library/debian:bookworm@sha256:b877a1a3fdf02469440f1768cf69c9771338a875b7add5e80c45b756c92ac20a AS build-journalctl
 # renovate: datasource=github-tags depName=systemd/systemd
-ARG SYSTEMD_VERSION=v257.1
+ARG SYSTEMD_VERSION=v257.2
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN set -e \
