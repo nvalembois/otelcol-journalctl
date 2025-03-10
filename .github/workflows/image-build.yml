@@ -89,11 +89,24 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
       - 
-        name: Build app
+        name: Build app (full)
         uses: docker/build-push-action@v6  # https://github.com/docker/build-push-action
         with:
           push: ${{ github.ref_name == 'main' }}
           context: .
+          platforms: linux/amd64
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:journalctl-${{ steps.versions.outputs.OTELCOL_VERSION }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:journalctl-${{ steps.versions.outputs.OTELCOL_VERSION }}-${{ steps.versions.outputs.SYSTEMD_VERSION }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - 
+        name: Build app (light)
+        uses: docker/build-push-action@v6  # https://github.com/docker/build-push-action
+        with:
+          push: ${{ github.ref_name == 'main' }}
+          context: .
+          target: build-otelcol
           platforms: linux/amd64
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.versions.outputs.OTELCOL_VERSION }}
