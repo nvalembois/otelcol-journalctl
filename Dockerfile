@@ -60,7 +60,6 @@ ARG USER_GID=10001
 USER ${USER_UID}:${USER_GID}
 
 COPY --from=build-otelcol /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
-COPY --from=build-otelcol /tmp/_build/otelcol-k8s-custom  /otelcol
-COPY --chmod=755 otelcol /otelcol
+COPY --from=build-otelcol --chmod=755 /tmp/_build/otelcol-k8s-custom  /otelcol
 
 ENTRYPOINT ["/otelcol"]
