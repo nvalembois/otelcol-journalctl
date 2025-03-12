@@ -37,7 +37,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           release_branches: master,main,latest
-          custom_tag: ${{ steps.versions.outputs.OTELCOL_VERSION }}-${{ steps.versions.outputs.SYSTEMD_VERSION }}
+          custom_tag: ${{ steps.versions.outputs.OTELCOL_VERSION }}
       - 
         name: Create a GitHub release
         if: github.ref_name == 'main'
