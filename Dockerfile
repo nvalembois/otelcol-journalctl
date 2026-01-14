@@ -26,7 +26,7 @@
 #  && rm -rf /tmp/systemd
 
 ### Build otelcol-k8s-custom
-FROM docker.io/library/golang:1.25.5@sha256:581c059c1d53b96a6db51a2f7a0eb943491ba1da50f1e43700db0cc325618096 AS build-otelcol
+FROM docker.io/library/golang:1.25.5@sha256:8bbd14091f2c61916134fa6aeb8f76b18693fcb29a39ec6d8be9242c0a7e9260 AS build-otelcol
 # renovate: datasource=github-tags depName=open-telemetry/opentelemetry-collector-releases
 ARG OTELCOL_VERSION=0.143.1
 
