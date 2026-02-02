@@ -13,6 +13,8 @@ extensions:
     v0.144.0
 - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/storage/filestorage
     v0.144.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension
+    v0.144.0
 - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension
     v0.144.0
 exporters:
