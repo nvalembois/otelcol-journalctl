@@ -85,7 +85,7 @@ jobs:
         name: Extract Docker metadata
         id: metadata
         if: github.ref_name == 'main'
-        uses: docker/metadata-action@v5  # https://github.com/docker/metadata-action
+        uses: docker/metadata-action@v6  # https://github.com/docker/metadata-action
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
       # - 
