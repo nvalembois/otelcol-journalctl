@@ -103,7 +103,7 @@ jobs:
       #     cache-to: type=gha,mode=max
       - 
         name: Build app
-        uses: docker/build-push-action@v6  # https://github.com/docker/build-push-action
+        uses: docker/build-push-action@v7  # https://github.com/docker/build-push-action
         with:
           push: ${{ github.ref_name == 'main' }}
           context: .
