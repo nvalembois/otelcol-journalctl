@@ -28,7 +28,7 @@
 ### Build otelcol-k8s-custom
 FROM docker.io/library/golang:1.26.1@sha256:e2ddb153f786ee6210bf8c40f7f35490b3ff7d38be70d1a0d358ba64225f6428 AS build-otelcol
 # renovate: datasource=github-tags depName=open-telemetry/opentelemetry-collector-releases
-ARG OTELCOL_VERSION=0.146.0
+ARG OTELCOL_VERSION=v0.147.0
 
 ENV DEBIAN_FRONTEND=noninteractive
 
