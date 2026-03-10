@@ -1,57 +1,31 @@
-### Build Journalctl
-# FROM docker.io/library/debian:bookworm@sha256:35286826a88dc879b4f438b645ba574a55a14187b483d09213a024dc0c0a64ed AS build-journalctl
-# # renovate: datasource=github-tags depName=systemd/systemd
-# ARG SYSTEMD_VERSION=v257.4
+# renovate: datasource=github-tags depName=open-telemetry/opentelemetry-collector-releases
+ARG OTELCOL_VERSION=v0.147.0
 
-# ENV DEBIAN_FRONTEND=noninteractive
-# RUN set -e \
-#  && apt-get update \
-#  && apt-get install --yes --mark-auto git python3-venv \
-#             gcc g++ libc6-dev gperf pkg-config libbpf-dev libmount-dev libcap-dev libzstd-dev \
-#  && cd /tmp \
-#  && git clone --depth 1 --branch ${SYSTEMD_VERSION} https://github.com/systemd/systemd.git \
-#  && cd systemd \
-#  && export PATH=${PATH}:/root/.local/bin \
-#  && python3 -m venv venv && . ./venv/bin/activate \
-#  && pip install -r .github/workflows/requirements.txt --require-hashes \
-#  && pip install jinja2 \
-#  && meson setup -Dmode=release -Dlink-journalctl-shared=false -Dstandalone-binaries=true \
-#                 -Dzstd=enabled \
-#                 --buildtype release --prefer-static build \
-#  && ninja -C build journalctl \
-#  && mv build/journalctl /bin/journalctl \
-#  && apt-get autopurge --yes \
-#  && apt-get clean --yes \
-#  && cd / \
-#  && rm -rf /tmp/systemd
+### Build manifest
+FROM docker.io/library/python:3.14.3-alpine@sha256:faee120f7885a06fcc9677922331391fa690d911c020abb9e8025ff3d908e510 AS manifest
+ARG OTELCOL_VERSION
+
+WORKDIR /build 
+COPY requirements.txt ./
+RUN set -e \
+ && PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    pip install --no-cache-dir --root-user-action ignore -r requirements.txt
+COPY manifest-template.yaml merge.py ./
+RUN python merge.py --version ${OTELCOL_VERSION#v} >manifest.yaml
 
 ### Build otelcol-k8s-custom
 FROM docker.io/library/golang:1.26.1@sha256:e2ddb153f786ee6210bf8c40f7f35490b3ff7d38be70d1a0d358ba64225f6428 AS build-otelcol
-# renovate: datasource=github-tags depName=open-telemetry/opentelemetry-collector-releases
-ARG OTELCOL_VERSION=0.146.0
+ARG OTELCOL_VERSION
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-COPY manifest-${OTELCOL_VERSION}.yaml /tmp/manifest.yaml
-
 WORKDIR /tmp
+COPY --from=manifest /build/manifest.yaml ./
+
 RUN set -e \
- && go install go.opentelemetry.io/collector/cmd/builder@v${OTELCOL_VERSION%.*} \
+ && go install go.opentelemetry.io/collector/cmd/builder@v${OTELCOL_VERSION#v} \
  && builder --config manifest.yaml \
  && rm -r otelcol-distribution* 
-
- ### Build image
-# FROM docker.io/library/debian:bookworm-slim@sha256:12c396bd585df7ec21d5679bb6a83d4878bc4415ce926c9e5ea6426d23c60bdc as full
-# ARG USER_UID=10001 
-
-# COPY --from=build-journalctl /bin/journalctl /bin/journalctl
-
-# COPY --from=build-otelcol /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
-# COPY --from=build-otelcol /tmp/_build/otelcol-k8s-custom  /
-
-# USER ${USER_UID}
-
-# ENTRYPOINT ["/otelcol-k8s-custom"]
 
 FROM scratch
 
