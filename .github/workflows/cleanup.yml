@@ -16,3 +16,4 @@ jobs:
         exclude-tags: latest
         keep-n-tagged: 5
         older-than: 30days
+        delete-untagged: true
