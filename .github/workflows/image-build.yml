@@ -5,8 +5,8 @@ on:
   push:
     paths:
       - Dockerfile
-      - versions.awk
-      - manifest.yaml
+      - manifest-template.yaml
+      - scripts/*
 
 env:
   REGISTRY: ghcr.io
@@ -17,7 +17,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
       packages: write
 
     steps:
@@ -28,7 +28,7 @@ jobs:
         name: Read versions
         id: versions
         run: |
-          awk -f versions.awk Dockerfile >> $GITHUB_OUTPUT
+          awk -f .github/scripts/versions.awk Dockerfile >> $GITHUB_OUTPUT
       - 
         name: Push Tag with new version
         if: github.ref_name == 'main' && github.ref_type != 'tag'
