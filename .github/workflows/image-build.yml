@@ -43,8 +43,8 @@ jobs:
         if: github.ref_name == 'main'
         uses: softprops/action-gh-release@v2 # https://github.com/ncipollo/release-action
         with:
-          tag_name: ${{ steps.tag_version.outputs.new_tag }}
-          name: Release ${{ github.repository }} ${{ steps.tag_version.outputs.new_tag }}
+          tag_name: ${{ steps.versions.outputs.OTELCOL_VERSION }}
+          name: Release ${{ github.repository }} ${{ steps.versions.outputs.OTELCOL_VERSION }}
           body: ${{ steps.tag_version.outputs.changelog }}
       - 
         name: Set up Python
