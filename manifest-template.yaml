@@ -31,6 +31,7 @@ processors:
 - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.147.0
 - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.147.0
 receivers:
+- gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.147.0
 - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/filelogreceiver v0.147.0
 - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver v0.147.0
 - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/journaldreceiver v0.147.0
