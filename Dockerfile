@@ -1,5 +1,5 @@
 # renovate: datasource=github-tags depName=open-telemetry/opentelemetry-collector-releases
-ARG OTELCOL_VERSION=v0.149.0
+ARG OTELCOL_VERSION=v0.150.1
 ARG USER_NAME=nonroot
 ARG USER_UID=65532
 ARG GROUP_NAME=$USER_NAME
