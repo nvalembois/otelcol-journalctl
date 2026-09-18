@@ -6,7 +6,7 @@ ARG GROUP_NAME=$USER_NAME
 ARG GROUP_UID=$USER_UID
 
 ### Build manifest
-FROM docker.io/library/python:3.14.7-alpine@sha256:c6ead215bfd31f1e433d968853b7a769989117115b728874824e6c0a27cb96fc AS manifest
+FROM docker.io/library/python:3.14.7-alpine@sha256:016508ba505da24f7139765bc4bb669df4e88eb2f12eeadd571bf2f88d7533df AS manifest
 
 ARG OTELCOL_VERSION
 
@@ -20,7 +20,7 @@ RUN set -e \
  && python merge.py --version ${OTELCOL_VERSION#v} >manifest.yaml
 
 ### Build otelcol-k8s-custom
-FROM docker.io/library/golang:1.27.1-alpine@sha256:cf6fca6641884b8433441b2b0652976f975e1d0fdd26d177eaaf8596087f3125 AS build-otelcol
+FROM docker.io/library/golang:1.27.1-alpine@sha256:4cb7ac979db5fcc41cae44b2227ba5ab8a51e8807f40d9ba4dee20a0ad960b5b AS build-otelcol
 
 ARG OTELCOL_VERSION
 ARG USER_NAME
