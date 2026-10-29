@@ -6,7 +6,7 @@ ARG GROUP_NAME=$USER_NAME
 ARG GROUP_UID=$USER_UID
 
 ### Build manifest
-FROM docker.io/library/python:3.15.2-alpine@sha256:1656b7eaf309cadf99069ea9de335c7f67a8355789cfc6f1835a05818996f081 AS manifest
+FROM docker.io/library/python:3.15.2-alpine@sha256:20a82dbc2783112ddb91d1534603f802d222a3e63e593cd002eb2ac534e70211 AS manifest
 
 ARG OTELCOL_VERSION
 
